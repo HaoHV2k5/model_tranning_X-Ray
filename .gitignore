@@ -1,0 +1,42 @@
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Datasets and large files (GitHub limits files to 100MB)
+data/
+chexpert_subset
+chexpert_subset*
+*.zip
+*.tar.gz
+*.tar
+
+# Model checkpoints & heavy experiment artifacts
+experiments/
+*.pt
+*.pth
+*.ckpt
+MedicalPatchNet/savedModels/
+
+# Exclude paper folder as requested
+paper/
+
+# Python caches and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and temporary files
+*.log
+script_run.txt

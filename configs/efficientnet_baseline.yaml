@@ -1,0 +1,10 @@
+# Baseline: cùng backbone nhưng patch_size = img_size -> cả ảnh là 1 patch
+# => tương đương EfficientNetV2-S thông thường (so sánh trong paper MedicalPatchNet).
+_base_: medicalpatchnet.yaml
+
+experiment:
+  name: efficientnet_baseline
+
+model:
+  params:
+    patch_size: 512

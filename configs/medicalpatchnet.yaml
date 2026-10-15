@@ -1,0 +1,21 @@
+# MedicalPatchNet: ảnh 512x512 chia thành lưới 8x8 = 64 patch (mỗi patch 64x64).
+# Mỗi patch được phân loại độc lập bởi EfficientNetV2-S, kết quả cuối = trung bình logits.
+# Tham số giống runTraining.sh của paper gốc.
+_base_: base.yaml
+
+experiment:
+  name: medicalpatchnet
+
+model:
+  name: medicalpatchnet
+  params:
+    patch_size: 64
+    backbone: efficientnet_v2_s
+    pretrained: true
+    init_gray_from_rgb: false   # true = khởi tạo lớp conv đầu từ trọng số ImageNet (gốc: khởi tạo ngẫu nhiên)
+
+train:
+  epochs: 20
+  batch_size: 16
+  optimizer:
+    lr: 1.0e-4

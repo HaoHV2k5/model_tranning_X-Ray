@@ -1,0 +1,75 @@
+# =============================================================================
+# CẤU HÌNH MẶC ĐỊNH (base)
+# Mọi config khác kế thừa file này bằng dòng `_base_: base.yaml`
+# và chỉ ghi lại những tham số muốn thay đổi.
+#
+# Ghi đè nhanh từ dòng lệnh, ví dụ:
+#   python scripts/train.py --config configs/medicalpatchnet.yaml \
+#       --set train.epochs=5 train.batch_size=8
+# =============================================================================
+
+experiment:
+  name: baseline              # tên lần chạy -> experiments/<thời-gian>_<name>/
+  output_dir: experiments     # thư mục chứa tất cả các lần chạy
+  seed: 42                    # cố định seed để tái lập kết quả
+  deterministic: false        # true = tái lập tuyệt đối nhưng chậm hơn
+  notes: ""                   # ghi chú tự do (mục đích thí nghiệm...)
+
+data:
+  root: data/chexpert_subset  # đường dẫn tương đối tính từ thư mục dự án
+  train_csv: train.csv
+  val_csv: val.csv
+  test_csv: test.csv
+  label_start_col: 5          # cột đầu tiên chứa nhãn bệnh trong file CSV
+  # Cách xử lý nhãn "không chắc chắn" (-1.0):
+  #   zeros  -> coi là KHÔNG bệnh (U-Zeros, giống code MedicalPatchNet gốc)
+  #   ones   -> coi là CÓ bệnh   (U-Ones)
+  #   ignore -> bỏ qua khi tính loss và metric
+  uncertain_policy: zeros
+  img_size: 512               # ảnh được resize về img_size x img_size
+  num_workers: 2              # số tiến trình đọc ảnh song song
+  cache_in_ram: true          # giữ ảnh trong RAM (uint8) để các epoch sau đọc nhanh
+  limit_samples: null         # số ảnh tối đa mỗi tập (dùng khi chạy thử), null = dùng hết
+  augment:                    # tăng cường dữ liệu, chỉ áp dụng cho tập train
+    enabled: true
+    rrc_scale: [0.5, 1.0]     # RandomResizedCrop: cắt ngẫu nhiên 50-100% diện tích ảnh
+    rotation_deg: 5           # xoay ngẫu nhiên ±5 độ
+    brightness: 0.3           # thay đổi độ sáng ±30%
+
+model:
+  name: medicalpatchnet       # tên model trong registry (xem src/xray/models/)
+  num_classes: 14
+  params: {}
+
+train:
+  epochs: 20
+  batch_size: 16
+  optimizer:
+    name: adamw               # adamw | adam | sgd
+    lr: 1.0e-4
+    weight_decay: 0.01
+  scheduler:
+    name: onecycle            # onecycle | cosine | none
+    pct_start: 0.05           # onecycle: 5% số bước đầu để tăng dần learning rate
+    warmup_epochs: 1          # cosine: số epoch warmup
+  loss:
+    name: bce                 # BCEWithLogits cho bài toán đa nhãn
+    pos_weight: false         # true = tăng trọng số lớp hiếm (bù mất cân bằng dữ liệu)
+  amp: false                  # mixed precision (tăng tốc, có thể kém ổn định trên MPS)
+  grad_clip: null             # vd 1.0 để chặn gradient quá lớn
+  monitor: val_auroc_mean     # metric dùng để chọn checkpoint tốt nhất
+  monitor_mode: max           # max (AUROC, F1...) | min (loss)
+  early_stopping:
+    enabled: true
+    patience: 5               # dừng nếu sau 5 epoch metric không cải thiện
+    min_delta: 0.001
+  log_every_n_steps: 10       # ghi loss từng bước vào TensorBoard
+  eval_test_at_end: true      # train xong tự đánh giá best.pt trên tập test
+
+eval:
+  threshold_method: youden    # youden (tối ưu trên tập VAL) | fixed
+  fixed_threshold: 0.5
+  bootstrap: 1000             # số lần bootstrap để tính khoảng tin cậy
+  ci: 0.95                    # khoảng tin cậy 95%
+
+device: auto                  # auto | mps | cuda | cpu
