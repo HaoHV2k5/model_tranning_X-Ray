@@ -134,11 +134,14 @@ def plot_per_class_history(per_class_csv: Path, out_dir: Path, metric: str = "au
     ax.set_yticks(range(len(classes)))
     ax.set_yticklabels(classes)
     ax.grid(False)
-    if len(epochs) <= 25:
-        for i in range(len(classes)):
-            for j in range(len(epochs)):
-                if not np.isnan(grid[i, j]):
-                    ax.text(j, i, f"{grid[i, j]:.2f}", ha="center", va="center", fontsize=7, color="w")
+    # Luôn hiển thị con số giá trị vào từng ô với màu tương phản (đen trên nền sáng, trắng trên nền tối)
+    font_size = 6 if len(epochs) > 20 else 7
+    for i in range(len(classes)):
+        for j in range(len(epochs)):
+            val = grid[i, j]
+            if not np.isnan(val):
+                text_color = "black" if val >= 0.78 else "white"
+                ax.text(j, i, f"{val:.2f}", ha="center", va="center", fontsize=font_size, color=text_color, fontweight="semibold")
     ax.set_xlabel("Epoch")
     ax.set_title(f"Validation {metric.upper()} theo từng bệnh")
     fig.colorbar(im, ax=ax, fraction=0.03)
