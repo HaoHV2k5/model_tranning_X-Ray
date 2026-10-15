@@ -4,7 +4,8 @@ env/
 venv/
 
 # Datasets and large files (GitHub limits files to 100MB)
-data/
+/data/
+!src/xray/data/
 chexpert_subset
 chexpert_subset*
 *.zip
