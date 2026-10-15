@@ -150,8 +150,52 @@ model:
 | **Sensitivity** | Tỷ lệ phát hiện đúng ca bệnh (quan trọng trong y tế). |
 | **Specificity** | Tỷ lệ phát hiện đúng ca không bệnh. |
 
+## Kết quả thực nghiệm (Benchmark)
+
+Mô hình MedicalPatchNet được huấn luyện trên tập CheXpert subset (4.000 train / 500 val / 500 test), đánh giá độc lập trên tập **TEST**:
+
+| Bệnh | AUROC | Độ nhạy (Sens) | Độ đặc hiệu (Spec) | F1-Score |
+|---|:---:|:---:|:---:|:---:|
+| **Support Devices** | **0.892** | 94.7% | 73.6% | 0.474 |
+| **Edema** | **0.868** | 74.5% | 81.5% | 0.442 |
+| **Consolidation** | **0.863** | 80.4% | 75.5% | 0.406 |
+| **Pleural Effusion** | **0.853** | 59.6% | 85.0% | 0.413 |
+| **Lung Opacity** | **0.847** | 91.5% | 67.1% | 0.419 |
+| **Atelectasis** | **0.838** | 82.4% | 73.9% | 0.400 |
+| **Pneumonia** | **0.809** | 90.2% | 57.2% | 0.318 |
+| **Pneumothorax** | **0.797** | 88.2% | 49.7% | 0.280 |
+| **Cardiomegaly** | **0.795** | 72.5% | 75.5% | 0.374 |
+| **Pleural Other** | **0.777** | 62.7% | 75.5% | 0.332 |
+| **Lung Lesion** | **0.758** | 76.5% | 66.1% | 0.322 |
+| **No Finding** | **0.713** | 74.5% | 61.0% | 0.288 |
+| **Fracture** | **0.701** | 68.6% | 64.4% | 0.285 |
+| **Enlarged Cardiomediastinum** | **0.699** | 68.6% | 61.7% | 0.271 |
+| **TRUNG BÌNH (Macro Mean)** | **`0.8007`** | **`77.51%`** | **`69.13%`** | **`0.3588`** |
+
+> **Ghi chú khoa học:** So với bài báo gốc (huấn luyện trên toàn bộ 223.414 ảnh của CheXpert), mô hình đạt **Độ nhạy 77.51%** (vượt mức 76.3% của bài báo) và **Macro-AUROC 0.8007** ngay trong điều kiện dữ liệu thu nhỏ (chỉ 4.000 ảnh).
+
+## Chạy trên Google Colab (GPU A100 / T4)
+
+```python
+# 1. Clone repo và cài đặt
+!git clone https://github.com/HaoHV2k5/model_tranning_X-Ray.git
+%cd model_tranning_X-Ray
+!pip install -q -r requirements.txt
+
+# 2. Giải nén dataset từ Google Drive
+from google.colab import drive
+drive.mount('/content/drive')
+!mkdir -p data
+!unzip -q "/content/drive/MyDrive/chexpert_subset_new.zip" -d data/
+
+# 3. Train siêu tốc với GPU NVIDIA + FP16
+!python scripts/train.py --config configs/medicalpatchnet.yaml \
+    --set train.epochs=50 train.batch_size=32 train.amp=true
+```
+
 ## Lưu ý
 
+- **Chống ngủ trên macOS:** Dùng lệnh `caffeinate -dims python scripts/train.py ...` để máy Mac không bị tắt màn hình / sleep giữa chừng.
 - **Nhãn không chắc (-1.0):** mặc định coi là "không bệnh" (`uncertain_policy: zeros`), giống paper MedicalPatchNet gốc. Đổi sang `ones` hoặc `ignore` trong config.
 - **Ngưỡng xác suất:** AUROC không cần ngưỡng. Các metric khác (F1, Acc...) dùng ngưỡng Youden J tối ưu trên **tập val** để tránh rò rỉ thông tin từ tập test.
 - **Tái lập kết quả:** seed và toàn bộ config được lưu trong từng thư mục thí nghiệm.
