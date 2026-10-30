@@ -1,5 +1,11 @@
 """MedicalPatchNet (port từ MedicalPatchNet/NetworkModel.py - lớp ScalePatchNet).
 
+Paper: "MedicalPatchNet: a patch-based self-explainable AI architecture for chest X-ray classification"
+Journal: Scientific Reports 16, 7467 (2026)
+DOI: https://doi.org/10.1038/s41598-026-40358-0
+URL: https://www.nature.com/articles/s41598-026-40358-0
+Authors: Patrick Wienholt, Christiane Kuhl, Jakob Nikolas Kather, Sven Nebelung & Daniel Truhn
+
 Ý tưởng: chia ảnh thành lưới patch không chồng lấn, mỗi patch được phân loại ĐỘC LẬP
 bằng cùng một backbone CNN, logits cuối = trung bình logits của các patch.
 => Logits từng patch chính là bản đồ giải thích (heatmap) mà không cần Grad-CAM.

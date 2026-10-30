@@ -1,5 +1,6 @@
 # MedicalPatchNet: ảnh 512x512 chia thành lưới 8x8 = 64 patch (mỗi patch 64x64).
 # Mỗi patch được phân loại độc lập bởi EfficientNetV2-S, kết quả cuối = trung bình logits.
+# Paper: https://www.nature.com/articles/s41598-026-40358-0 (Scientific Reports 2026)
 # Tham số giống runTraining.sh của paper gốc.
 _base_: base.yaml
 

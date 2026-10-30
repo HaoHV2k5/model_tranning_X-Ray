@@ -2,6 +2,11 @@
 
 Phân loại 14 bệnh trên ảnh X-quang ngực (CheXpert subset: 4000 train / 500 val / 500 test).
 
+Dự án phát triển dựa trên kiến trúc **MedicalPatchNet** — mô hình học sâu tự giải thích (self-explainable) dựa trên patch cho ảnh X-quang:
+- **Bài báo khoa học (Nature Scientific Reports):** [MedicalPatchNet: a patch-based self-explainable AI architecture for chest X-ray classification](https://www.nature.com/articles/s41598-026-40358-0)
+- **DOI:** [10.1038/s41598-026-40358-0](https://doi.org/10.1038/s41598-026-40358-0)
+- **Tác giả:** Patrick Wienholt, Christiane Kuhl, Jakob Nikolas Kather, Sven Nebelung & Daniel Truhn (*Scientific Reports*, 2026)
+
 ## Cấu trúc dự án
 
 ```
@@ -172,7 +177,7 @@ Mô hình MedicalPatchNet được huấn luyện trên tập CheXpert subset (4
 | **Enlarged Cardiomediastinum** | **0.699** | 68.6% | 61.7% | 0.271 |
 | **TRUNG BÌNH (Macro Mean)** | **`0.8007`** | **`77.51%`** | **`69.13%`** | **`0.3588`** |
 
-> **Ghi chú khoa học:** So với bài báo gốc (huấn luyện trên toàn bộ 223.414 ảnh của CheXpert), mô hình đạt **Độ nhạy 77.51%** (vượt mức 76.3% của bài báo) và **Macro-AUROC 0.8007** ngay trong điều kiện dữ liệu thu nhỏ (chỉ 4.000 ảnh).
+> **Ghi chú khoa học:** So với [bài báo gốc trên Nature Scientific Reports](https://www.nature.com/articles/s41598-026-40358-0) (huấn luyện trên toàn bộ 223.414 ảnh của CheXpert), mô hình đạt **Độ nhạy 77.51%** (vượt mức 76.3% của bài báo) và **Macro-AUROC 0.8007** ngay trong điều kiện dữ liệu thu nhỏ (chỉ 4.000 ảnh).
 
 ## Chạy trên Google Colab (GPU A100 / T4)
 
@@ -199,3 +204,22 @@ drive.mount('/content/drive')
 - **Nhãn không chắc (-1.0):** mặc định coi là "không bệnh" (`uncertain_policy: zeros`), giống paper MedicalPatchNet gốc. Đổi sang `ones` hoặc `ignore` trong config.
 - **Ngưỡng xác suất:** AUROC không cần ngưỡng. Các metric khác (F1, Acc...) dùng ngưỡng Youden J tối ưu trên **tập val** để tránh rò rỉ thông tin từ tập test.
 - **Tái lập kết quả:** seed và toàn bộ config được lưu trong từng thư mục thí nghiệm.
+
+## Tài liệu tham khảo & Trích dẫn (Citation)
+
+Nếu bạn sử dụng dự án này hoặc kiến trúc MedicalPatchNet trong nghiên cứu, vui lòng trích dẫn bài báo chính thức:
+
+```bibtex
+@article{wienholt2026medicalpatchnet,
+  title={MedicalPatchNet: a patch-based self-explainable AI architecture for chest X-ray classification},
+  author={Wienholt, Patrick and Kuhl, Christiane and Kather, Jakob Nikolas and Nebelung, Sven and Truhn, Daniel},
+  journal={Scientific Reports},
+  volume={16},
+  number={1},
+  pages={7467},
+  year={2026},
+  publisher={Nature Publishing Group},
+  doi={10.1038/s41598-026-40358-0},
+  url={https://www.nature.com/articles/s41598-026-40358-0}
+}
+```
