@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-10-15T18:59:09",
+  "command": "python scripts/train.py --resume experiments/20261015-175050_medicalpatchnet",
+  "python": "3.9.6",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "processor": "arm",
+  "torch": "2.8.0",
+  "torchvision": "0.23.0",
+  "device": "mps",
+  "seed": 42,
+  "git_commit": "1a0b16f1d37ba1852df34110b861d27571ceab83"
+}

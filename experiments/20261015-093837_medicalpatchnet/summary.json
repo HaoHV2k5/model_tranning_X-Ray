@@ -1,0 +1,41 @@
+{
+  "run_name": "20261015-093837_medicalpatchnet",
+  "experiment": "medicalpatchnet",
+  "notes": "",
+  "status": "interrupted",
+  "model": "medicalpatchnet",
+  "model_params": {
+    "patch_size": 64,
+    "backbone": "efficientnet_v2_s",
+    "pretrained": true,
+    "init_gray_from_rgb": false
+  },
+  "num_parameters": 20194990,
+  "hparams": {
+    "img_size": 512,
+    "uncertain_policy": "zeros",
+    "epochs": 20,
+    "batch_size": 16,
+    "optimizer": "adamw",
+    "lr": 0.0001,
+    "scheduler": "onecycle",
+    "pos_weight": false,
+    "seed": 42
+  },
+  "monitor": "val_auroc_mean",
+  "best_epoch": 4,
+  "best_value": 0.7538945203767323,
+  "epochs_completed": 4,
+  "train_time_min": 47.15,
+  "device": "mps",
+  "best_val": {
+    "val_loss": 0.299633,
+    "val_auroc_mean": 0.753895,
+    "val_auprc_mean": 0.282201,
+    "val_accuracy_mean": 0.892857,
+    "val_precision_mean": 0.5,
+    "val_sensitivity_mean": 0.0131711,
+    "val_specificity_mean": 0.997732,
+    "val_f1_mean": 0.0238236
+  }
+}

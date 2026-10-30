@@ -13,7 +13,7 @@ chexpert_subset*
 *.tar
 
 # Model checkpoints & heavy experiment artifacts
-experiments/
+# experiments/
 *.pt
 *.pth
 *.ckpt
@@ -40,4 +40,5 @@ Thumbs.db
 
 # Logs and temporary files
 *.log
+!experiments/**/*.log
 script_run.txt

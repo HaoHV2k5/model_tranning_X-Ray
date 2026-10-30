@@ -1,0 +1,50 @@
+2026-10-15 11:53:40 | INFO    | ================================================================================
+2026-10-15 11:53:40 | INFO    | Thư mục lần chạy : /Users/ttcenter/Desktop/projects/x-quang/experiments/20261015-115340_medicalpatchnet
+2026-10-15 11:53:40 | INFO    | Thiết bị         : mps | torch 2.8.0 | python 3.9.6
+2026-10-15 11:53:40 | INFO    | Dữ liệu          : train 4000 | val 500 ảnh | 14 bệnh | ảnh 512px | nhãn không chắc: zeros
+2026-10-15 11:53:40 | INFO    | Số ca dương (train): No Finding=401, Enlarged Cardiomediastinum=401, Cardiomegaly=401, Lung Opacity=495, Lung Lesion=401, Edema=401, Consolidation=401, Pneumonia=401, Atelectasis=401, Pneumothorax=401, Pleural Effusion=449, Pleural Other=401, Fracture=401, Support Devices=465
+2026-10-15 11:53:41 | INFO    | Model            : medicalpatchnet {'patch_size': 64, 'backbone': 'efficientnet_v2_s', 'pretrained': True, 'init_gray_from_rgb': False} | 20.19M tham số
+2026-10-15 11:53:41 | INFO    | Train            : 20 epoch | batch 16 | adamw lr=0.0001 | scheduler onecycle | chọn best theo val_auroc_mean
+2026-10-15 11:53:41 | INFO    | ================================================================================
+2026-10-15 12:04:17 | INFO    | Epoch   1/20 | train_loss 0.4687 | val_loss 0.3276 | val_AUROC 0.6509 | val_Acc 0.8933 | val_F1 0.0000 | lr 1.00e-04 | 634s  ★ best
+2026-10-15 12:14:43 | INFO    | Epoch   2/20 | train_loss 0.3186 | val_loss 0.3084 | val_AUROC 0.7174 | val_Acc 0.8927 | val_F1 0.0000 | lr 9.93e-05 | 624s  ★ best
+2026-10-15 12:25:08 | INFO    | Epoch   3/20 | train_loss 0.3082 | val_loss 0.3138 | val_AUROC 0.7236 | val_Acc 0.8921 | val_F1 0.0899 | lr 9.73e-05 | 624s  ★ best
+2026-10-15 12:35:36 | INFO    | Epoch   4/20 | train_loss 0.3052 | val_loss 0.2996 | val_AUROC 0.7539 | val_Acc 0.8929 | val_F1 0.0238 | lr 9.40e-05 | 625s  ★ best
+2026-10-15 12:46:09 | INFO    | Epoch   5/20 | train_loss 0.3024 | val_loss 0.3127 | val_AUROC 0.7475 | val_Acc 0.8921 | val_F1 0.1342 | lr 8.94e-05 | 632s
+2026-10-15 12:56:53 | INFO    | Epoch   6/20 | train_loss 0.3024 | val_loss 0.2948 | val_AUROC 0.7579 | val_Acc 0.8950 | val_F1 0.0768 | lr 8.38e-05 | 642s  ★ best
+2026-10-15 13:07:26 | INFO    | Epoch   7/20 | train_loss 0.2996 | val_loss 0.2971 | val_AUROC 0.7503 | val_Acc 0.8943 | val_F1 0.0480 | lr 7.73e-05 | 632s
+2026-10-15 13:18:02 | INFO    | Epoch   8/20 | train_loss 0.2972 | val_loss 0.2952 | val_AUROC 0.7701 | val_Acc 0.8959 | val_F1 0.1722 | lr 7.01e-05 | 633s  ★ best
+2026-10-15 13:28:35 | INFO    | Epoch   9/20 | train_loss 0.2955 | val_loss 0.2882 | val_AUROC 0.7727 | val_Acc 0.8944 | val_F1 0.0631 | lr 6.22e-05 | 632s  ★ best
+2026-10-15 13:39:07 | INFO    | Epoch  10/20 | train_loss 0.2932 | val_loss 0.2851 | val_AUROC 0.7797 | val_Acc 0.8951 | val_F1 0.0928 | lr 5.41e-05 | 630s  ★ best
+2026-10-15 13:49:41 | INFO    | Epoch  11/20 | train_loss 0.2918 | val_loss 0.2861 | val_AUROC 0.7768 | val_Acc 0.8951 | val_F1 0.1442 | lr 4.58e-05 | 633s
+2026-10-15 14:00:13 | INFO    | Epoch  12/20 | train_loss 0.2894 | val_loss 0.2869 | val_AUROC 0.7822 | val_Acc 0.8931 | val_F1 0.0620 | lr 3.77e-05 | 630s  ★ best
+2026-10-15 14:10:43 | INFO    | Epoch  13/20 | train_loss 0.2869 | val_loss 0.2825 | val_AUROC 0.7854 | val_Acc 0.8957 | val_F1 0.1358 | lr 2.99e-05 | 628s  ★ best
+2026-10-15 14:21:13 | INFO    | Epoch  14/20 | train_loss 0.2860 | val_loss 0.2826 | val_AUROC 0.7887 | val_Acc 0.8934 | val_F1 0.1153 | lr 2.26e-05 | 629s  ★ best
+2026-10-15 14:31:39 | INFO    | Epoch  15/20 | train_loss 0.2845 | val_loss 0.2822 | val_AUROC 0.7876 | val_Acc 0.8950 | val_F1 0.1056 | lr 1.61e-05 | 625s
+2026-10-15 14:45:30 | INFO    | Epoch  16/20 | train_loss 0.2827 | val_loss 0.2814 | val_AUROC 0.7901 | val_Acc 0.8950 | val_F1 0.1309 | lr 1.05e-05 | 829s  ★ best
+2026-10-15 14:56:00 | INFO    | Epoch  17/20 | train_loss 0.2811 | val_loss 0.2805 | val_AUROC 0.7913 | val_Acc 0.8950 | val_F1 0.1142 | lr 6.01e-06 | 628s  ★ best
+2026-10-15 15:06:34 | INFO    | Epoch  18/20 | train_loss 0.2834 | val_loss 0.2815 | val_AUROC 0.7898 | val_Acc 0.8940 | val_F1 0.1324 | lr 2.70e-06 | 633s
+2026-10-15 15:17:09 | INFO    | Epoch  19/20 | train_loss 0.2810 | val_loss 0.2804 | val_AUROC 0.7906 | val_Acc 0.8950 | val_F1 0.1157 | lr 6.77e-07 | 632s
+2026-10-15 15:27:44 | INFO    | Epoch  20/20 | train_loss 0.2817 | val_loss 0.2802 | val_AUROC 0.7910 | val_Acc 0.8947 | val_F1 0.1135 | lr 4.11e-10 | 634s
+2026-10-15 15:27:45 | INFO    | Đã vẽ biểu đồ vào /Users/ttcenter/Desktop/projects/x-quang/experiments/20261015-115340_medicalpatchnet/figures
+2026-10-15 15:27:45 | INFO    | Đánh giá tập TEST với best.pt (epoch 17)
+2026-10-15 15:27:45 | INFO    | Tối ưu ngưỡng (Youden J) trên tập validation...
+2026-10-15 15:28:29 | INFO    | Bootstrap 1000 lần để tính khoảng tin cậy 95%...
+2026-10-15 15:28:32 | INFO    | ===== KẾT QUẢ TẬP TEST (500 ảnh) =====
+2026-10-15 15:28:32 | INFO    | Bệnh                           n+   AUROC   AUPRC   Sens   Spec     F1
+2026-10-15 15:28:32 | INFO    | No Finding                     51   0.713   0.215  0.745  0.610  0.288
+2026-10-15 15:28:32 | INFO    | Enlarged Cardiomediastinum     51   0.699   0.224  0.686  0.617  0.271
+2026-10-15 15:28:32 | INFO    | Cardiomegaly                   51   0.795   0.309  0.725  0.755  0.374
+2026-10-15 15:28:32 | INFO    | Lung Opacity                   59   0.847   0.419  0.915  0.671  0.419
+2026-10-15 15:28:32 | INFO    | Lung Lesion                    51   0.758   0.267  0.765  0.661  0.322
+2026-10-15 15:28:32 | INFO    | Edema                          51   0.868   0.371  0.745  0.815  0.442
+2026-10-15 15:28:32 | INFO    | Consolidation                  51   0.863   0.417  0.804  0.755  0.406
+2026-10-15 15:28:32 | INFO    | Pneumonia                      51   0.809   0.327  0.902  0.572  0.318
+2026-10-15 15:28:32 | INFO    | Atelectasis                    51   0.838   0.367  0.824  0.739  0.400
+2026-10-15 15:28:32 | INFO    | Pneumothorax                   51   0.797   0.311  0.882  0.497  0.280
+2026-10-15 15:28:32 | INFO    | Pleural Effusion               52   0.853   0.415  0.596  0.850  0.413
+2026-10-15 15:28:32 | INFO    | Pleural Other                  51   0.777   0.315  0.627  0.755  0.332
+2026-10-15 15:28:32 | INFO    | Fracture                       51   0.701   0.188  0.686  0.644  0.285
+2026-10-15 15:28:32 | INFO    | Support Devices                57   0.892   0.497  0.947  0.736  0.474
+2026-10-15 15:28:32 | INFO    | TRUNG BÌNH                         0.8007 (CI95% 0.7710-0.8277)  F1=0.3588  Acc=0.7003
+2026-10-15 15:28:32 | INFO    | XONG. Kết quả ở: /Users/ttcenter/Desktop/projects/x-quang/experiments/20261015-115340_medicalpatchnet

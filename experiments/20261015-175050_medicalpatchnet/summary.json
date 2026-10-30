@@ -1,0 +1,91 @@
+{
+  "run_name": "20261015-175050_medicalpatchnet",
+  "experiment": "medicalpatchnet",
+  "notes": "",
+  "status": "early_stopped",
+  "model": "medicalpatchnet",
+  "model_params": {
+    "patch_size": 64,
+    "backbone": "efficientnet_v2_s",
+    "pretrained": true,
+    "init_gray_from_rgb": false
+  },
+  "num_parameters": 20194990,
+  "hparams": {
+    "img_size": 512,
+    "uncertain_policy": "zeros",
+    "epochs": 50,
+    "batch_size": 16,
+    "optimizer": "adamw",
+    "lr": 0.0001,
+    "scheduler": "onecycle",
+    "pos_weight": false,
+    "seed": 42
+  },
+  "monitor": "val_auroc_mean",
+  "best_epoch": 21,
+  "best_value": 0.7997114713656243,
+  "epochs_completed": 26,
+  "train_time_min": 183.42,
+  "device": "mps",
+  "best_val": {
+    "val_loss": 0.276558,
+    "val_auroc_mean": 0.799711,
+    "val_auprc_mean": 0.348496,
+    "val_accuracy_mean": 0.896429,
+    "val_precision_mean": 0.596296,
+    "val_sensitivity_mean": 0.0744267,
+    "val_specificity_mean": 0.993704,
+    "val_f1_mean": 0.10695
+  },
+  "test": {
+    "mean": {
+      "auroc_mean": 0.7882554769410909,
+      "auprc_mean": 0.32471863244303417,
+      "accuracy_mean": 0.7007142857142856,
+      "precision_mean": 0.23792071902537354,
+      "sensitivity_mean": 0.7377303456893634,
+      "specificity_mean": 0.6963685563638203,
+      "f1_mean": 0.3504460284706585
+    },
+    "ci": {
+      "auroc_mean": {
+        "low": 0.7591003325831646,
+        "high": 0.8170529806231337,
+        "std": 0.015126838723954516
+      },
+      "auprc_mean": {
+        "low": 0.27851089143435165,
+        "high": 0.3836885202317107,
+        "std": 0.02726537722648987
+      },
+      "accuracy_mean": {
+        "low": 0.6788535714285714,
+        "high": 0.7217178571428571,
+        "std": 0.011096292277808811
+      },
+      "precision_mean": {
+        "low": 0.20454530216793043,
+        "high": 0.27410643956080755,
+        "std": 0.017732128952603766
+      },
+      "sensitivity_mean": {
+        "low": 0.6867947310331822,
+        "high": 0.791499911303402,
+        "std": 0.026438140010358706
+      },
+      "specificity_mean": {
+        "low": 0.6718860639538191,
+        "high": 0.7205370611765076,
+        "std": 0.012574152720149567
+      },
+      "f1_mean": {
+        "low": 0.31096131243360076,
+        "high": 0.39067579461196345,
+        "std": 0.020569332684928884
+      }
+    },
+    "loss": 0.2793354125022888,
+    "threshold_method": "youden (từ tập val)"
+  }
+}

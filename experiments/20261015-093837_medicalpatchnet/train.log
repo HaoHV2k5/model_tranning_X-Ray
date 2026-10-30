@@ -1,0 +1,15 @@
+2026-10-15 09:38:37 | INFO    | ================================================================================
+2026-10-15 09:38:37 | INFO    | Thư mục lần chạy : /Users/ttcenter/Desktop/projects/x-quang/experiments/20261015-093837_medicalpatchnet
+2026-10-15 09:38:37 | INFO    | Thiết bị         : mps | torch 2.8.0 | python 3.9.6
+2026-10-15 09:38:37 | INFO    | Dữ liệu          : train 4000 | val 500 ảnh | 14 bệnh | ảnh 512px | nhãn không chắc: zeros
+2026-10-15 09:38:37 | INFO    | Số ca dương (train): No Finding=401, Enlarged Cardiomediastinum=401, Cardiomegaly=401, Lung Opacity=495, Lung Lesion=401, Edema=401, Consolidation=401, Pneumonia=401, Atelectasis=401, Pneumothorax=401, Pleural Effusion=449, Pleural Other=401, Fracture=401, Support Devices=465
+2026-10-15 09:38:37 | INFO    | Model            : medicalpatchnet {'patch_size': 64, 'backbone': 'efficientnet_v2_s', 'pretrained': True, 'init_gray_from_rgb': False} | 20.19M tham số
+2026-10-15 09:38:37 | INFO    | Train            : 20 epoch | batch 16 | adamw lr=0.0001 | scheduler onecycle | chọn best theo val_auroc_mean
+2026-10-15 09:38:37 | INFO    | ================================================================================
+2026-10-15 09:49:17 | INFO    | Epoch   1/20 | train_loss 0.4687 | val_loss 0.3276 | val_AUROC 0.6509 | val_Acc 0.8933 | val_F1 0.0000 | lr 1.00e-04 | 637s  ★ best
+2026-10-15 09:59:43 | INFO    | Epoch   2/20 | train_loss 0.3186 | val_loss 0.3084 | val_AUROC 0.7174 | val_Acc 0.8927 | val_F1 0.0000 | lr 9.93e-05 | 624s  ★ best
+2026-10-15 10:10:08 | INFO    | Epoch   3/20 | train_loss 0.3082 | val_loss 0.3138 | val_AUROC 0.7236 | val_Acc 0.8921 | val_F1 0.0899 | lr 9.73e-05 | 623s  ★ best
+2026-10-15 10:20:33 | INFO    | Epoch   4/20 | train_loss 0.3052 | val_loss 0.2996 | val_AUROC 0.7539 | val_Acc 0.8929 | val_F1 0.0238 | lr 9.40e-05 | 623s  ★ best
+2026-10-15 10:25:47 | WARNING | Đã dừng bằng Ctrl+C. Train tiếp bằng: python scripts/train.py --resume experiments/20261015-093837_medicalpatchnet
+2026-10-15 10:25:48 | INFO    | Đã vẽ biểu đồ vào /Users/ttcenter/Desktop/projects/x-quang/experiments/20261015-093837_medicalpatchnet/figures
+2026-10-15 10:25:48 | INFO    | XONG. Kết quả ở: /Users/ttcenter/Desktop/projects/x-quang/experiments/20261015-093837_medicalpatchnet

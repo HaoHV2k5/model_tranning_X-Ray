@@ -1,0 +1,62 @@
+experiment:
+  name: medicalpatchnet
+  output_dir: experiments
+  seed: 42
+  deterministic: false
+  notes: ''
+data:
+  root: data/chexpert_subset
+  train_csv: train.csv
+  val_csv: val.csv
+  test_csv: test.csv
+  label_start_col: 5
+  uncertain_policy: zeros
+  img_size: 512
+  num_workers: 2
+  cache_in_ram: true
+  limit_samples: null
+  augment:
+    enabled: true
+    rrc_scale:
+    - 0.5
+    - 1.0
+    rotation_deg: 5
+    brightness: 0.3
+model:
+  name: medicalpatchnet
+  num_classes: 14
+  params:
+    patch_size: 64
+    backbone: efficientnet_v2_s
+    pretrained: true
+    init_gray_from_rgb: false
+train:
+  epochs: 20
+  batch_size: 16
+  optimizer:
+    name: adamw
+    lr: 0.0001
+    weight_decay: 0.01
+  scheduler:
+    name: onecycle
+    pct_start: 0.05
+    warmup_epochs: 1
+  loss:
+    name: bce
+    pos_weight: false
+  amp: false
+  grad_clip: null
+  monitor: val_auroc_mean
+  monitor_mode: max
+  early_stopping:
+    enabled: true
+    patience: 5
+    min_delta: 0.001
+  log_every_n_steps: 10
+  eval_test_at_end: true
+eval:
+  threshold_method: youden
+  fixed_threshold: 0.5
+  bootstrap: 1000
+  ci: 0.95
+device: auto
